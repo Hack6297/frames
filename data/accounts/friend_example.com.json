@@ -1,0 +1,140 @@
+{
+  "profile": {
+    "email": "friend@example.com",
+    "displayName": "friend",
+    "createdAt": "2026-04-16T12:58:10"
+  },
+  "state": {
+    "settings": {
+      "wallpaper": "7.jpg",
+      "aeroColor": "rgba(30,60,110,0.45)",
+      "titlebarColor": "rgba(255,255,255,0.15)",
+      "username": "friend",
+      "themes": [],
+      "activeTheme": null,
+      "clockFormat": "12h",
+      "stickyNotes": [],
+      "volume": 65,
+      "taskbarBrightness": 100,
+      "titlebarBrightness": 100,
+      "transparencyEffects": true,
+      "pinnedTaskbar": [
+        "ie",
+        "explorer",
+        "mediaplayer",
+        "messenger"
+      ]
+    },
+    "vfs": {
+      "C:": {
+        "type": "drive",
+        "children": {
+          "Windows": {
+            "type": "folder",
+            "children": {}
+          },
+          "Users": {
+            "type": "folder",
+            "children": {
+              "friend": {
+                "type": "folder",
+                "children": {
+                  "Desktop": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Documents": {
+                    "type": "folder",
+                    "children": {
+                      "Welcome.txt": {
+                        "type": "file",
+                        "content": "Welcome back, friend. Your Windows 7 desktop is now saved to this account.",
+                        "modified": "04/16/2026"
+                      }
+                    }
+                  },
+                  "Downloads": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Pictures": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Music": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Videos": {
+                    "type": "folder",
+                    "children": {}
+                  }
+                }
+              }
+            }
+          },
+          "Program Files": {
+            "type": "folder",
+            "children": {}
+          }
+        }
+      },
+      "D:": {
+        "type": "drive",
+        "children": {}
+      },
+      "RecycleBin": {
+        "type": "recyclebin",
+        "children": {}
+      }
+    },
+    "messenger": {
+      "contacts": [
+        {
+          "id": "gabrielm6297-gmail-com",
+          "name": "GabrielM6297",
+          "group": "Friends",
+          "status": "Offline",
+          "note": "gabrielm6297@gmail.com",
+          "color": "#45b6ff",
+          "email": "gabrielm6297@gmail.com",
+          "kind": "account"
+        }
+      ],
+      "conversations": {
+        "gabrielm6297-gmail-com": [
+          {
+            "from": "them",
+            "text": "Hello from Gabriel",
+            "time": "1:02 PM"
+          },
+          {
+            "from": "them",
+            "text": "Hello from Gabriel",
+            "time": "1:03 PM"
+          },
+          {
+            "from": "them",
+            "text": "Legacy WLM online",
+            "time": "1:08 PM"
+          }
+        ]
+      },
+      "state": {
+        "status": "Online",
+        "personalMessage": "Back on Windows Live Messenger.",
+        "search": "",
+        "selected": "",
+        "currentChat": "",
+        "showOffline": true,
+        "groups": {
+          "Favorites": true,
+          "Friends": true,
+          "Family": true,
+          "Work": true,
+          "Windows Live": true
+        }
+      }
+    }
+  }
+}

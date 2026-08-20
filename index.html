@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Frames 6</title>
+  <link rel="stylesheet" href="https://unpkg.com/xp.css/dist/xp.css">
+  <link rel="stylesheet" href="style.css?v=calendar-gadget-icon">
+  <link rel="stylesheet" href="xp-reset-final.css?v=11">
+<link rel="stylesheet" href="7css-scrollbar.css">
+
+  <script src="app.js?v=calendar-gadget-icon" defer></script>
+</head>
+
+<body>
+  <div id="boot-overlay">
+    <div id="boot-click-to-start">
+      <img src="icons/vista_aero_icon.png" width="80" style="margin-bottom:20px;opacity:0.8">
+      <h2>Click to start Frames 6...</h2>
+      <p style="font-size:12px;opacity:0.6;margin-top:40px">Click to boot</p>
+    </div>
+    <video id="boot-video" src="videos/startup_bootload.mp4" style="display:none"></video>
+  </div>
+
+      <div id="lock-screen">
+    <div class="lock-user-area">
+      <img src="templates/LogOn.png" class="lock-user-icon" onmouseenter="this.src='templates/LogOnGlow.png'"
+        onmouseleave="this.src='templates/LogOn.png'">
+      <div class="lock-username" id="lock-username">Sign in to Frames 6</div>
+      <div class="lock-subtitle">Use your account email to load your desktop, files, wallpaper, and Messenger history.</div>
+      <div class="lock-input-wrap">
+        <input type="email" placeholder="Email address" id="lock-email" autocomplete="email">
+        <button class="lock-button" onclick="signInFromLockScreen()" id="lock-btn" title="Sign in"></button>
+      </div>
+        <div class="lock-status" id="lock-status">Starting account service check...</div>
+        <button type="button" class="lock-guest-login" onclick="signInAsGuest()">Log in as Guest</button>
+    </div>
+  </div>
+
+  <div id="desktop">
+    <!-- Desktop Icons and Gadgets -->
+    
+    <!-- Notepad -->
+    <div class="window glass" id="window-notepad" style="top:80px;left:180px;display:none;width:500px;height:350px">
+      <div class="title-bar">
+        <div class="title-bar-text">Untitled - Notepad</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding:0;display:flex;flex-direction:column;height:calc(100% - 28px)">
+        <ul role="menubar" class="can-hover" style="margin:0;padding:3px 8px;border-bottom:1px solid #e0e0e0">
+          <li role="menuitem" tabindex="0" aria-haspopup="true">File<ul role="menu">
+              <li role="menuitem"><a href="#" onclick="notepadNew()">New</a></li>
+              <li role="menuitem"><a href="#" onclick="notepadOpen()">Open...</a></li>
+              <li role="menuitem"><a href="#" onclick="notepadSave()">Save</a></li>
+              <li role="menuitem"><a href="#" onclick="notepadSaveAs()">Save As...</a></li>
+            </ul>
+          </li>
+          <li role="menuitem">Edit</li>
+          <li role="menuitem">View</li>
+          <li role="menuitem">Format</li>
+          <li role="menuitem">Help</li>
+        </ul>
+        <textarea id="notepad-textarea"
+          style="width:100%;height:100%;border:none;outline:none;padding:5px;resize:none;font-family:Consolas,monospace;font-size:12px"></textarea>
+      </div>
+    </div>
+
+    <!-- Recycle Bin -->
+    <div class="window glass" id="window-recyclebin" style="top:120px;left:240px;display:none;width:700px;height:450px">
+      <div class="title-bar">
+        <div class="title-bar-text">Recycle Bin</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding:0;display:flex;flex-direction:column;height:calc(100% - 28px)">
+        <div class="explorer-command-bar">
+          <button class="cmd-bar-btn" onclick="emptyRecycleBin()"><img src="icons/frames icons/bin_empty.png" width="16"> Empty
+            Recycle Bin</button>
+          <div class="cmd-separator"></div>
+          <button class="cmd-bar-btn" onclick="restoreFromRecycleBin()">Restore selected</button>
+        </div>
+        <div class="explorer-main has-scrollbar" style="padding:8px;overflow:auto">
+          <table class="has-shadow" style="width:100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Original Location</th>
+                <th>Date deleted</th>
+                <th>Size</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody id="recycle-bin-content"></tbody>
+          </table>
+        </div>
+        <div class="explorer-status-bar"><span id="recycle-item-count">0 items</span></div>
+      </div>
+    </div>
+
+    <!-- Computer Explorer -->
+    <div class="window glass" id="window-explorer" style="top:100px;left:220px;display:none;width:750px;height:480px">
+      <div class="title-bar">
+        <div class="title-bar-top">
+          <div class="title-bar-text">Computer</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize" onclick="minimizeWindow('explorer')"></button>
+            <button aria-label="Maximize" onclick="toggleMaximize('explorer')"></button>
+            <button aria-label="Close" onclick="closeWindow('explorer')"></button>
+          </div>
+        </div>
+        <div class="explorer-integrated-nav">
+          <div class="explorer-nav-buttons">
+            <button class="nav-image-btn" id="nav-back-btn" onclick="vfsGoBack()" title="Back"><img
+                src="back.png"></button>
+            <button class="nav-image-btn nav-forward" id="nav-fwd-btn" onclick="vfsGoForward()" title="Forward"><img
+                src="forward.png"></button>
+          </div>
+          <div class="explorer-breadcrumb" id="explorer-breadcrumb"></div>
+          <div class="explorer-search-box">
+            <input type="search" placeholder="Search"
+              onkeydown="if(event.key==='Enter'){filterExplorer(this.value);event.preventDefault();}">
+          </div>
+        </div>
+      </div>
+      <div class="window-body" style="padding:0;display:flex;flex-direction:column;height:calc(100% - 80px)">
+        <!-- Nav bar removed as it's now in the title bar -->
+        <div class="explorer-command-bar">
+          <ul role="menubar" class="can-hover">
+            <li role="menuitem" aria-haspopup="true">
+              Organize
+              <ul role="menu">
+                <li role="menuitem"><a href="#" onclick="vfsNewFile('folder');return false">New folder</a></li>
+                <li class="cmd-separator"></li>
+                <li role="menuitem"><a href="#">Cut</a></li>
+                <li role="menuitem"><a href="#">Copy</a></li>
+                <li role="menuitem"><a href="#">Paste</a></li>
+                <li class="cmd-separator"></li>
+                <li role="menuitem"><a href="#">Select all</a></li>
+                <li class="cmd-separator"></li>
+                <li role="menuitem"><a href="#">Layout</a></li>
+                <li role="menuitem"><a href="#">Folder and search options</a></li>
+                <li class="cmd-separator"></li>
+                <li role="menuitem"><a href="#" onclick="vfsDelete();return false">Delete</a></li>
+                <li role="menuitem"><a href="#" onclick="vfsRename();return false">Rename</a></li>
+                <li role="menuitem"><a href="#">Properties</a></li>
+              </ul>
+            </li>
+            <li role="menuitem" aria-haspopup="true">
+              System properties
+            </li>
+            <li role="menuitem" aria-haspopup="true">
+              Uninstall or change a program
+            </li>
+            <li role="menuitem" aria-haspopup="true">
+              Map network drive
+            </li>
+            <li role="menuitem" aria-haspopup="true">
+              Open Control Panel
+            </li>
+          </ul>
+          <div class="cmd-separator"></div>
+          <button class="cmd-bar-btn" onclick="triggerExplorerUpload('file')"><img src="icons/frames icons/file.png" width="16"> Upload file</button>
+          <button class="cmd-bar-btn" onclick="triggerExplorerUpload('folder')"><img src="icons/frames icons/folder.png" width="16"> Upload folder</button>
+          <input type="file" id="explorer-upload-file-input" multiple style="display:none" onchange="handleExplorerUpload(this,false)">
+          <input type="file" id="explorer-upload-folder-input" multiple webkitdirectory directory style="display:none" onchange="handleExplorerUpload(this,true)">
+        </div>
+        <div class="explorer-container">
+          <div class="explorer-sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-title">Favorites</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','','Desktop'])"><img src="icons/desktop.png">
+                Desktop</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','Admin','Downloads'])"><img
+                  src="icons/downloads.png"> Downloads</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','Admin','Documents'])"><img
+                  src="icons/frames icons/file.png"> Recent Places</div>
+            </div>
+            <div class="sidebar-section">
+              <div class="sidebar-title">Libraries</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','Admin','Documents'])"><img
+                  src="icons/frames icons/file.png"> Documents</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','Admin','Music'])"><img
+                  src="icons/music.png"> Music</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','Admin','Pictures'])"><img
+                  src="icons/picture.png"> Pictures</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:','Users','Admin','Videos'])"><img
+                  src="icons/video.png"> Videos</div>
+            </div>
+            <div class="sidebar-section">
+              <div class="sidebar-title">Computer</div>
+              <div class="sidebar-item" onclick="vfsNavigate(['C:'])"><img src="icons/frames icons/computer.png" width="16"> Local
+                Disk (C:)</div>
+            </div>
+          </div>
+          <div class="explorer-main has-scrollbar" id="explorer-content" style="overflow:auto"></div>
+        </div>
+        <div class="explorer-status-bar"><span id="explorer-item-count">0 items</span></div>
+      </div>
+    </div>
+
+    <!-- Paint (Win7 Authentic) -->
+    <div class="window glass" id="window-paint" style="top:50px;left:250px;display:none;width:900px;height:620px">
+      <div class="title-bar">
+        <div class="title-bar-text">Untitled - Paint</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding:0;display:flex;flex-direction:column;height:calc(100% - 28px)">
+        <div class="paint-ribbon" style="position:relative">
+          <div class="ribbon-tabs">
+            <div class="paint-file-btn" onclick="paintFileMenu()">File</div>
+            <div class="ribbon-tab active" onclick="paintSwitchTab('home')">Home</div>
+            <div class="ribbon-tab" onclick="paintSwitchTab('view')">View</div>
+          </div>
+          <div class="ribbon-content" id="paint-ribbon-home">
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <div class="ribbon-btn" onclick="paintAction('paste')"><img src="icons/frames icons/file.png"><span>Paste</span>
+                </div>
+                <div class="ribbon-btn" onclick="paintAction('cut')"><img src="icons/x.png"><span>Cut</span></div>
+                <div class="ribbon-btn" onclick="paintAction('copy')"><img src="icons/frames icons/file.png"><span>Copy</span>
+                </div>
+              </div>
+              <div class="ribbon-group-title">Clipboard</div>
+            </div>
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <div class="ribbon-btn" id="paint-tool-select" onclick="setPaintTool('select')"><img
+                    src="icons/find.png"><span>Select</span></div>
+                <div class="ribbon-btn" id="paint-tool-pencil" onclick="setPaintTool('pencil')"><img
+                    src="icons/frames icons/notepad.png"><span>Pencil</span></div>
+                <div class="ribbon-btn" id="paint-tool-fill" onclick="setPaintTool('fill')"><img
+                    src="icons/picture.png"><span>Fill</span></div>
+                <div class="ribbon-btn" id="paint-tool-text" onclick="setPaintTool('text')"><img
+                    src="icons/frames icons/file.png"><span>Text</span></div>
+                <div class="ribbon-btn" id="paint-tool-eraser" onclick="setPaintTool('eraser')"><img
+                    src="icons/unknown_file.png"><span>Eraser</span></div>
+                <div class="ribbon-btn" id="paint-tool-picker" onclick="setPaintTool('picker')"><img
+                    src="icons/find.png"><span>Picker</span></div>
+                <div class="ribbon-btn" id="paint-tool-brush" onclick="setPaintTool('brush')"><img
+                    src="icons/frames icons/paint.png"><span>Brush</span></div>
+                <div class="ribbon-btn" id="paint-tool-airbrush" onclick="setPaintTool('airbrush')"><img
+                    src="icons/frames icons/paint.png"><span>Airbrush</span></div>
+              </div>
+              <div class="ribbon-group-title">Tools</div>
+            </div>
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <div class="ribbon-btn" id="paint-tool-line" onclick="setPaintTool('line')"><img
+                    src="icons/frames icons/file.png"><span>Line</span></div>
+                <div class="ribbon-btn" id="paint-tool-rect" onclick="setPaintTool('rect')"><img
+                    src="icons/frames icons/folder.png"><span>Rect</span></div>
+                <div class="ribbon-btn" id="paint-tool-ellipse" onclick="setPaintTool('ellipse')"><img
+                    src="icons/globe_with_magnifyer.png"><span>Ellipse</span></div>
+                <div class="ribbon-btn" id="paint-tool-roundrect" onclick="setPaintTool('roundrect')"><img
+                    src="icons/frames icons/folder.png"><span>Rnd Rect</span></div>
+                <div class="ribbon-btn" id="paint-tool-polygon" onclick="setPaintTool('polygon')"><img
+                    src="icons/unknown_file.png"><span>Polygon</span></div>
+                <div class="ribbon-btn" id="paint-tool-triangle" onclick="setPaintTool('triangle')"><img
+                    src="icons/frames icons/folder.png"><span>Triangle</span></div>
+              </div>
+              <div class="ribbon-group-title">Shapes</div>
+            </div>
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <div style="display:flex;gap:1px;align-items:center"><span style="font-size:10px">Size:</span>
+                    <div style="width:28px;height:2px;background:#000;border:1px solid #999;cursor:pointer"
+                      onclick="setBrushSize(1)"></div>
+                    <div style="width:28px;height:4px;background:#000;border:1px solid #999;cursor:pointer"
+                      onclick="setBrushSize(3)"></div>
+                    <div style="width:28px;height:7px;background:#000;border:1px solid #999;cursor:pointer"
+                      onclick="setBrushSize(5)"></div>
+                    <div style="width:28px;height:10px;background:#000;border:1px solid #999;cursor:pointer"
+                      onclick="setBrushSize(8)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="ribbon-group-title">Size</div>
+            </div>
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <div class="paint-color-area">
+                  <div class="paint-color-box">
+                    <div class="paint-active-colors">
+                      <div class="paint-color1" id="paint-color1" style="background:#000"
+                        onclick="paintSelectColorSlot(1)"></div>
+                      <div class="paint-color2" id="paint-color2" style="background:#fff"
+                        onclick="paintSelectColorSlot(2)"></div>
+                    </div>
+                  </div>
+                  <div class="paint-palette" id="paint-palette"></div>
+                  <div class="ribbon-btn" onclick="paintEditColors()"><span style="font-size:10px">Edit<br>Colors</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ribbon-group-title">Colors</div>
+            </div>
+          </div>
+          <div class="ribbon-content" id="paint-ribbon-view" style="display:none">
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <div class="ribbon-btn" onclick="paintZoom(2)"><img src="icons/find.png"><span>Zoom In</span></div>
+                <div class="ribbon-btn" onclick="paintZoom(0.5)"><img src="icons/find.png"><span>Zoom Out</span></div>
+                <div class="ribbon-btn" onclick="paintZoom(1)"><img src="icons/find.png"><span>100%</span></div>
+              </div>
+              <div class="ribbon-group-title">Zoom</div>
+            </div>
+            <div class="ribbon-group">
+              <div class="ribbon-items">
+                <label style="font-size:10px"><input type="checkbox" id="paint-grid" onchange="paintToggleGrid()">
+                  Gridlines</label>
+                <label style="font-size:10px"><input type="checkbox" id="paint-rulers" onchange="paintToggleRulers()">
+                  Rulers</label>
+              </div>
+              <div class="ribbon-group-title">Show/Hide</div>
+            </div>
+          </div>
+        </div>
+        <div class="paint-canvas-container" id="paint-container"><canvas id="paint-canvas"
+            style="background:white;cursor:crosshair;box-shadow:2px 2px 5px rgba(0,0,0,0.3);display:block"></canvas>
+        </div>
+        <div class="paint-status-bar"><span id="paint-coords">0, 0 px</span><span id="paint-canvas-size">800 x 600
+            px</span><span id="paint-status">Pencil</span></div>
+      </div>
+    </div>
+
+    <!-- Widgets Gallery -->
+    <div class="window glass" id="window-widgets" style="top:64px;left:120px;display:none;width:758px;height:486px">
+      <div class="title-bar">
+        <div class="title-bar-text">Desktop Gadgets</div>
+        <div class="title-bar-controls"><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding:0;height:calc(100% - 28px)">
+        <div class="widgets-gallery">
+          <div class="widgets-gallery-sidebar">
+            <h3>Browse</h3>
+            <div class="wg-category active">All Gadgets</div>
+          </div>
+          <div class="widgets-gallery-main has-scrollbar">
+            <h2>Desktop Gadgets</h2>
+            <p style="color:#496380;font-size:12px;margin:0 0 16px">Drag a gadget onto the desktop to place it just like Frames 6.</p>
+            <div class="widget-grid">
+              <div class="widget-card" onmousedown="startWidgetDrag(event,'slideshow')">
+                <div class="widget-preview preview-slideshow"></div>
+                <div class="widget-meta">
+                  <span class="wc-title">Slide Show</span>
+                  <span class="wc-desc">Cycles through your wallpapers in a glossy photo frame.</span>
+                </div>
+              </div>
+              <div class="widget-card" onmousedown="startWidgetDrag(event,'stickynote')">
+                <div class="widget-preview preview-note"></div>
+                <div class="widget-meta">
+                  <span class="wc-title">Sticky Notes</span>
+                  <span class="wc-desc">Quick handwritten notes with a classic yellow paper look.</span>
+                </div>
+              </div>
+              <div class="widget-card" onmousedown="startWidgetDrag(event,'clock')">
+                <div class="widget-preview preview-clock"></div>
+                <div class="widget-meta">
+                  <span class="wc-title">Clock</span>
+                  <span class="wc-desc">A silver analog desk clock with glass and metallic depth.</span>
+                </div>
+              </div>
+              <div class="widget-card" onmousedown="startWidgetDrag(event,'calendar')">
+                <div class="widget-preview preview-calendar"></div>
+                <div class="widget-meta">
+                  <span class="wc-title">Calendar</span>
+                  <span class="wc-desc">A blue date page with the glass clock look from the Gadgets icon.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="window glass" id="window-calc" style="top:180px;left:400px;display:none;width:240px;height:340px">
+      <div class="title-bar">
+        <div class="title-bar-text">Calculator</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" onclick="minimizeWindow('calc')"></button>
+          <button aria-label="Maximize" onclick="toggleMaximize('calc')"></button>
+          <button aria-label="Close" onclick="closeWindow('calc')"></button>
+        </div>
+      </div>
+      <div class="window-body has-space" style="background:#d9e4f1; border:1px solid #97abd3; border-top:none">
+        <div style="padding:10px">
+          <input type="text" id="calc-display" readonly
+            style="width:100%;text-align:right;margin-bottom:12px;height:45px;font-size:24px;border:1px solid #7a91bb;background:linear-gradient(to bottom, #f4f8fc, #ffffff); box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); padding: 0 8px; box-sizing:border-box">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+            <button class="calc-btn op-btn" onclick="clearCalc()">MC</button><button class="calc-btn op-btn"
+              onclick="calcInput('MR')">MR</button><button class="calc-btn op-btn"
+              onclick="calcInput('MS')">MS</button><button class="calc-btn op-btn" onclick="calcInput('M+')">M+</button>
+
+            <button class="calc-btn" onclick="calcInput('7')">7</button><button class="calc-btn"
+              onclick="calcInput('8')">8</button><button class="calc-btn" onclick="calcInput('9')">9</button><button
+              class="calc-btn op-btn" onclick="calcOp('/')">/</button>
+
+            <button class="calc-btn" onclick="calcInput('4')">4</button><button class="calc-btn"
+              onclick="calcInput('5')">5</button><button class="calc-btn" onclick="calcInput('6')">6</button><button
+              class="calc-btn op-btn" onclick="calcOp('*')">*</button>
+
+            <button class="calc-btn" onclick="calcInput('1')">1</button><button class="calc-btn"
+              onclick="calcInput('2')">2</button><button class="calc-btn" onclick="calcInput('3')">3</button><button
+              class="calc-btn op-btn" onclick="calcOp('-')">-</button>
+
+            <button class="calc-btn" onclick="calcInput('0')">0</button><button class="calc-btn"
+              onclick="calcInput('.')">.</button><button class="calc-btn eq-btn" onclick="calculate()"
+              style="grid-column: span 1">=</button><button class="calc-btn op-btn" onclick="calcOp('+')">+</button>
+
+            <button class="calc-btn op-btn" onclick="clearCalc()" style="grid-column: span 2">C</button>
+            <button class="calc-btn op-btn" onclick="calcBackspace()" style="grid-column: span 2">&#8592;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="window glass" id="window-panel" style="top:80px;left:200px;display:none;width:700px;height:480px">
+      <div class="title-bar">
+        <div class="title-bar-text">Control Panel</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body has-space has-scrollbar" style="background:white;overflow-y:auto" id="cp-body"></div>
+    </div>
+
+    <!-- Personalization -->
+    <div class="window glass" id="window-personalization"
+      style="top:60px;left:180px;display:none;width:800px;height:540px">
+      <div class="title-bar">
+        <div class="title-bar-text">Personalization</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" onclick="minimizeWindow('personalization')"></button>
+          <button aria-label="Maximize" onclick="toggleMaximize('personalization')"></button>
+          <button aria-label="Close" onclick="closeWindow('personalization')"></button>
+        </div>
+      </div>
+      <div class="window-body" style="padding:0;height:calc(100% - 28px)">
+        <div class="personalization-body">
+          <div class="personalization-sidebar">
+            <div class="perso-nav-item active" onclick="persoSwitchTab('themes')">Themes</div>
+            <div class="perso-nav-item" onclick="persoSwitchTab('wallpaper')">Desktop Background</div>
+            <div class="perso-nav-item" onclick="persoSwitchTab('color')">Window Color</div>
+          </div>
+          <div class="personalization-main" id="perso-main"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- iFrames Viewer -->
+    <div class="window glass" id="window-ie" style="top:50px;left:180px;display:none;width:900px;height:580px">
+      <div class="title-bar">
+        <div class="title-bar-text" id="ie-title-text">iFrames Viewer</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding:0;display:flex;flex-direction:column;height:calc(100% - 28px)">
+
+        <!-- Navigation Bar -->
+        <div class="ie-nav-bar">
+          <div class="ie-nav-btns">
+            <button class="ie-nav-btn ie-back-btn" id="ie-back-btn" onclick="ieBack()" title="Back"><img
+                src="back.png"></button>
+            <button class="ie-nav-btn ie-fwd-btn" id="ie-fwd-btn" onclick="ieForward()" title="Forward"><img
+                src="forward.png"></button>
+          </div>
+          <div class="ie-address-wrap">
+            <div class="ie-favicon-wrap"><img id="ie-favicon" src="icons/vista_aero_icon.png"
+                style="width:16px;height:16px;"></div>
+            <input type="text" id="ie-address" class="ie-address-bar" value="about:home"
+              onkeydown="if(event.key==='Enter')ieNavigate()">
+            <button class="ie-refresh-btn" onclick="ieRefresh()" title="Refresh">&#8635;</button>
+          </div>
+          <div class="ie-search-wrap">
+            <input type="text" class="ie-search-bar" placeholder="Bing"
+              onkeydown="if(event.key==='Enter')ieBingSearch(this.value)">
+          </div>
+        </div>
+
+        <!-- Command Bar -->
+        <div class="ie-command-bar">
+          <div class="ie-tabs-bar" id="ie-tabs-bar">
+            <div class="ie-tab active" id="ie-tab-0"><img id="ie-tab-favicon-0"
+                src="icons/vista_aero_icon.png"><span id="ie-tab-title-0">New Tab</span><button
+                class="ie-tab-close" onclick="ieCloseTab(0)">x</button></div>
+            <button class="ie-new-tab-btn" onclick="ieNewTab()">+</button>
+          </div>
+          <div class="ie-cmd-buttons">
+            <button class="ie-cmd-btn" onclick="ieHome()"><img src="icons/desktop.png">Home</button>
+            <div class="ie-cmd-sep"></div>
+            <button class="ie-cmd-btn" onclick="ieFavorites()"><img src="icons/find.png">Favorites</button>
+            <div class="ie-cmd-sep"></div>
+            <button class="ie-cmd-btn ie-tools-btn" onclick="ieToolsMenu()"><img src="icons/security.png">Tools
+              ▾</button>
+          </div>
+        </div>
+
+        <!-- Web Content -->
+        <div class="ie-content">
+          <iframe id="ie-frame" src="about:blank" style="width:100%;height:100%;border:none;background:white"></iframe>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="ie-status-bar">
+          <span id="ie-status">Done</span>
+          <div class="ie-status-right">
+            <img src="icons/network.png" style="width:14px;height:14px;opacity:0.6;">
+            <span id="ie-zone">Internet</span>
+            <div class="ie-protected-mode">Protected Mode: On</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Frames Messenger -->
+    <div class="window glass" id="window-messenger" style="top:88px;left:260px;display:none;width:360px;height:560px">
+      <div class="title-bar">
+        <div class="title-bar-text"><img src="icons/frames icons/messenger.png" class="wlm-title-icon" alt=""> Frames Messenger</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body wlm-shell" style="padding:0;height:calc(100% - 28px)">
+        <ul role="menubar" class="can-hover wlm-menubar">
+          <li role="menuitem">File</li>
+          <li role="menuitem">Contacts</li>
+          <li role="menuitem">Actions</li>
+          <li role="menuitem">Tools</li>
+          <li role="menuitem">Help</li>
+        </ul>
+        <div class="wlm-account-bar">
+          <div class="wlm-display-picture" id="wlm-display-picture">M</div>
+          <div class="wlm-account-meta">
+            <div class="wlm-display-name" id="wlm-display-name">Martin</div>
+            <div class="wlm-identity-row">
+              <span class="wlm-account-email" id="wlm-account-email">guest@offline</span>
+              <span class="wlm-service-status" id="wlm-service-status">Offline mode</span>
+            </div>
+            <select id="wlm-status-select" class="wlm-status-select" onchange="messengerSetStatus(this.value)">
+              <option>Online</option>
+              <option>Busy</option>
+              <option>Away</option>
+              <option>Appear Offline</option>
+            </select>
+            <input type="text" id="wlm-personal-message" class="wlm-personal-message" value="Back on Frames Messenger." oninput="messengerSetPersonalMessage(this.value)">
+          </div>
+        </div>
+        <div class="wlm-toolbar">
+          <button onclick="messengerOpenChatFromSelection()">Send an instant message</button>
+          <button onclick="messengerAddContact()">Add a contact</button>
+          <button onclick="messengerCycleSelection(1)">Next contact</button>
+          <button onclick="messengerToggleOfflineContacts()">Hide offline</button>
+        </div>
+        <div class="wlm-search-row">
+          <input type="search" id="wlm-search" placeholder="Search contacts" oninput="messengerFilterContacts(this.value)">
+        </div>
+        <div class="wlm-contact-pane" id="wlm-contact-pane"></div>
+        <div class="wlm-promo-pane">
+          <img src="icons/message.png" alt="">
+          <div>
+            <strong>Frames Messenger online</strong>
+            <span>Add friends by email and keep your conversations saved with your account.</span>
+          </div>
+        </div>
+        <div class="wlm-status-bar">
+          <span id="wlm-summary">0 contacts online</span>
+          <span id="wlm-live-summary">Messenger service offline</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frames Messenger Conversation -->
+    <div class="window glass" id="window-messengerchat" style="top:128px;left:620px;display:none;width:520px;height:430px">
+      <div class="title-bar">
+        <div class="title-bar-text" id="wlm-chat-title"><img src="icons/message.png" class="wlm-title-icon" alt=""> Conversation</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body wlm-chat-shell" style="padding:0;height:calc(100% - 28px)">
+        <div class="wlm-chat-banner">
+          <div class="wlm-chat-avatar" id="wlm-chat-avatar">A</div>
+          <div class="wlm-chat-banner-copy">
+            <strong id="wlm-chat-name">Conversation</strong>
+            <span id="wlm-chat-status">Online</span>
+          </div>
+        </div>
+        <div class="wlm-chat-log has-scrollbar" id="wlm-chat-log"></div>
+        <div class="wlm-chat-toolbar">
+          <button onclick="messengerInsertQuickText('See you soon.')"><img src="icons/message.png" alt=""> Quick text</button>
+          <button onclick="messengerInsertQuickText('Can we talk later today?')">Insert message</button>
+        </div>
+        <div class="wlm-chat-compose">
+          <textarea id="wlm-chat-input" placeholder="Type a message" onkeydown="messengerHandleChatKey(event)"></textarea>
+          <div class="wlm-chat-actions">
+            <button onclick="messengerSendMessage()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frames Media Player (Legacy) -->
+    <div class="window glass" id="window-mediaplayer" style="top:80px;left:230px;display:none;width:730px;height:520px">
+      <div class="title-bar">
+        <div class="title-bar-text">Frames Media Player</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button
+            aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body" style="padding:0;height:calc(100% - 28px)">
+        <div class="wmp-legacy">
+          <div class="wmp-nav-bar">
+            <div class="wmp-nav-tab active" onclick="wmpSwitchView('playing')">Now Playing</div>
+            <div class="wmp-nav-tab" onclick="wmpSwitchView('library')">Library</div>
+          </div>
+          <div class="wmp-body">
+            <div class="wmp-library-panel" id="wmp-lib-panel">
+              <div class="wmp-lib-section">
+                <div class="wmp-lib-title">Music</div>
+                <div class="wmp-lib-item active" onclick="wmpLibSelect('all')"><img src="icons/music.png"> All Music
+                </div>
+                <div class="wmp-lib-item" onclick="wmpLibSelect('artist')"><img src="icons/user.png"> Artist</div>
+                <div class="wmp-lib-item" onclick="wmpLibSelect('album')"><img src="icons/picture.png"> Album</div>
+              </div>
+              <div class="wmp-lib-section">
+                <div class="wmp-lib-title">Playlists</div>
+                <div id="wmp-playlist-list"></div>
+              </div>
+            </div>
+            <div class="wmp-content">
+              <div class="wmp-art-area" id="wmp-art-area"><canvas id="wmp-canvas" width="400" height="250"></canvas>
+              </div>
+              <div class="wmp-track-info" id="wmp-track-info">No track playing</div>
+            </div>
+          </div>
+          <div class="wmp-transport">
+            <div class="wmp-seek" onclick="wmpSeek(event)">
+              <div class="wmp-seek-fill" id="wmp-seek-fill"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div class="wmp-transport-btns">
+                <button class="wmp-ctrl-btn" onclick="wmpPrev()" title="Previous"><img src="back.png"></button>
+                <button class="wmp-ctrl-btn wmp-play-btn" id="wmp-play-btn" onclick="wmpTogglePlay()" title="Play"><img
+                    src="templates/Play.png" id="wmp-play-icon"></button>
+                <button class="wmp-ctrl-btn" onclick="wmpNext()" title="Next"><img src="forward.png"></button>
+              </div>
+              <span style="color:#667;font-size:11px;min-width:60px" id="wmp-time">0:00/0:00</span>
+              <div class="wmp-volume-area"><img src="templates/Volume.png"><input type="range" class="wmp-volume-slider"
+                  min="0" max="100" value="80" oninput="wmpSetVolume(this.value)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="window glass" id="window-windowscleanup" style="top:138px;left:310px;display:none;width:520px;height:340px">
+      <div class="title-bar">
+        <div class="title-bar-text">framescleanup.exe</div>
+        <div class="title-bar-controls"><button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button></div>
+      </div>
+      <div class="window-body has-space cleanup-shell">
+        <div class="cleanup-summary">
+          <strong>Disk Cleanup</strong>
+          <span>Analyze temporary files, recycle bin contents, and cached setup data.</span>
+        </div>
+        <div class="cleanup-list">
+          <label><input type="checkbox" checked> Temporary Internet Files <span>182 MB</span></label>
+          <label><input type="checkbox" checked> Recycle Bin <span>28 MB</span></label>
+          <label><input type="checkbox"> Frames Error Reports <span>14 MB</span></label>
+          <label><input type="checkbox" checked> Setup Log Files <span>9 MB</span></label>
+        </div>
+        <div class="cleanup-actions">
+          <button class="office-btn wide-btn" onclick="runFramesCleanup()">Clean selected files</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /desktop -->
+
+  <!-- Start Menu -->
+  <div id="start-menu">
+    <div class="start-menu-inner">
+      <div id="start-menu-left">
+        <ul class="has-scrollbar">
+          <li class="start-program" data-app="explorer" onclick="openWindow('explorer');toggleStartMenu(false)"><img src="icons/frames icons/computer.png"> Computer</li>
+          <li class="start-program" data-app="notepad" onclick="openWindow('notepad');toggleStartMenu(false)"><img src="icons/frames icons/notepad.png"> Notepad</li>
+          <li class="start-program" data-app="calc" onclick="openWindow('calc');toggleStartMenu(false)"><img src="icons/frames icons/calculator.png"> Calculator</li>
+          <li class="start-program" data-app="paint" onclick="openWindow('paint');toggleStartMenu(false)"><img src="icons/frames icons/paint.png"> Paint</li>
+<li class="start-program" data-app="ie" onclick="openWindow('ie');toggleStartMenu(false)"><img src="icons/vista_aero_icon.png"> iFrames Viewer</li>
+          <li class="start-program" data-app="messenger" onclick="openWindow('messenger');toggleStartMenu(false)"><img src="icons/frames icons/messenger.png"> Frames Messenger</li>
+          <li class="start-program" data-app="mediaplayer" onclick="openWindow('mediaplayer');toggleStartMenu(false)"><img src="icons/frames icons/media_player.png"> Frames Media Player</li>
+          <li class="start-program" data-app="widgets" onclick="openWindow('widgets');toggleStartMenu(false)"><img src="icons/frames icons/gadgets.png"> Desktop Gadgets</li>
+          <li class="start-program" data-app="panel" onclick="openWindow('panel');toggleStartMenu(false)"><img src="icons/frames icons/control_panel.png"> Control Panel</li>
+          <li class="start-program" data-app="personalization" onclick="openWindow('personalization');toggleStartMenu(false)"><img src="icons/personalization.png"> Personalization</li>
+          <li class="start-program" data-app="recyclebin" onclick="openWindow('recyclebin');toggleStartMenu(false)"><img src="icons/frames icons/bin_full.png"> Recycle Bin</li>
+        </ul>
+        <div class="start-all-programs-wrap">
+          <div class="start-all-programs">All Programs <span
+              style="font-size:8px">&#9654;</span></div>
+        </div>
+      </div>
+      <div id="start-menu-right">
+        <div class="user-header"><img src="templates/user.png" class="user-icon"><div class="user-name" id="start-user-name">Martin</div></div>
+        <ul>
+          <li>Martin</li>
+          <li onclick="openWindow('explorer')">Computer</li>
+          <li onclick="openWindow('panel')">Control Panel</li>
+          <li>Default Programs</li>
+          <li>Help and Support</li>
+        </ul>
+      </div>
+    </div>
+    <div id="start-menu-bottom">
+      <div class="start-search">
+        <div class="searchbox"><input type="search" placeholder="Search programs and files"
+            oninput="searchApps(this.value)"></div>
+      </div>
+      <button id="shutdown-btn-premium" onclick="shutdownPC()"></button>
+    </div>
+  </div>
+
+  <!-- Tray Popups (Battery, Sound, Security, Network) -->
+  <div id="battery-popup" class="window glass popup-window"
+    style="position:fixed;display:none;z-index:100000;width:280px">
+    <div class="title-bar">
+      <div class="title-bar-text">Battery</div>
+      <div class="title-bar-controls"><button aria-label="Close" onclick="closeAllPopups()"></button></div>
+    </div>
+    <div class="window-body has-space tray-popup-body" style="padding:10px">
+      <div class="tray-popup-panel">
+        <img src="templates/battery.png" width="28" alt="">
+        <div class="tray-popup-copy">
+          <strong>Remaining 27%</strong>
+          <div>Choose a power plan:</div>
+        </div>
+      </div>
+      <div role="progressbar" class="animate" style="width:100%;height:20px;margin:12px 0 8px">
+        <div style="width:75%;background:linear-gradient(to right,#4caf50,#8bc34a)"></div>
+      </div>
+      <div class="tray-popup-copy">
+        <div><input type="radio" checked> Balanced</div>
+        <div><input type="radio"> Power saver</div>
+        <a href="#" class="tray-popup-link">More power options</a>
+      </div>
+    </div>
+  </div>
+  <div id="sound-popup" class="window glass popup-window"
+    style="position:fixed;display:none;z-index:100000;width:260px">
+    <div class="title-bar">
+      <div class="title-bar-text">Volume</div>
+      <div class="title-bar-controls"><button aria-label="Close" onclick="closeAllPopups()"></button></div>
+    </div>
+    <div class="window-body has-space tray-popup-body" style="padding:12px">
+      <div class="volume-popup-shell">
+        <input type="range" min="0" max="100" value="65" class="volume-popup-slider" oninput="updateVolumeLevel(this.value)">
+        <div class="tray-popup-copy">
+          <img src="templates/sound.png" class="volume-popup-icon" alt="">
+          <strong id="volume-display">65%</strong>
+          <div>Speakers (Realtek High Definition Audio)</div>
+          <a href="#" class="tray-popup-link">Mixer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="security-popup" class="window glass popup-window"
+    style="position:fixed;display:none;z-index:100000;width:300px">
+    <div class="title-bar">
+      <div class="title-bar-text">Action Center</div>
+      <div class="title-bar-controls"><button aria-label="Close" onclick="closeAllPopups()"></button></div>
+    </div>
+    <div class="window-body has-space tray-popup-body" style="padding:10px">
+      <div class="tray-popup-panel">
+        <img src="templates/action_center.png" width="28" alt="">
+        <div class="tray-popup-copy">
+          <strong>Messages available</strong>
+          <div>Review your security and maintenance status.</div>
+        </div>
+      </div>
+      <div class="action-center-status">Firewall: On</div>
+      <div class="action-center-status">Frames Defender: Active</div>
+      <div class="action-center-status">Automatic Updates: Enabled</div>
+    </div>
+  </div>
+  <div id="network-popup" class="window glass popup-window"
+    style="position:fixed;display:none;z-index:100000;width:280px">
+    <div class="title-bar">
+      <div class="title-bar-text">Network</div>
+      <div class="title-bar-controls"><button aria-label="Close" onclick="closeAllPopups()"></button></div>
+    </div>
+    <div class="window-body has-space tray-popup-body" style="padding:10px">
+      <div class="tray-popup-panel">
+        <img src="templates/InternetConnected.png" width="28" alt="">
+        <div class="tray-popup-copy">
+          <strong>Network 2</strong>
+          <div>Internet access</div>
+          <a href="#" class="tray-popup-link">Open Network and Sharing Center</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <div id="start-button" onclick="toggleStartMenu()"></div>
+    <div id="taskbar-apps"></div>
+    <div id="taskbar-right">
+      <div class="taskbar-tray-icon hidden-apps-toggle" title="Show hidden icons"><img src="templates/hidden_apps_button.png" alt=""></div>
+      <div class="taskbar-tray-icon" onclick="togglePopup('security')" title="Action Center"><img src="templates/action_center.png" alt=""></div>
+      <div class="taskbar-tray-icon" onclick="togglePopup('network')" title="Network"><img src="templates/network_bars.png" alt=""></div>
+      <div class="taskbar-tray-icon" onclick="togglePopup('battery')" title="Battery"><img src="templates/battery.png" alt=""></div>
+      <div class="taskbar-tray-icon" onclick="togglePopup('sound')" title="Sound"><img src="templates/sound.png" alt=""></div>
+      <div id="clock">
+        <div class="time"></div>
+        <div class="date"></div>
+      </div>
+      <div id="minimize-all-btn" onclick="minimizeAll()" title="Show Desktop"></div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <ul role="menu" id="context-menu" style="position:absolute;display:none;z-index:100000;min-width:200px">
+    <li role="menuitem" class="context-file-op"><a href="#" onclick="vfsOpenItem();return false"><strong>Open</strong></a></li>
+    <li role="menuitem" class="context-file-op menu-divider"></li>
+    <li role="menuitem" class="context-empty-op" aria-haspopup="true">View<ul role="menu">
+        <li role="menuitem"><a href="#">Large icons</a></li>
+        <li role="menuitem"><a href="#">Medium icons</a></li>
+        <li role="menuitem"><a href="#">Small icons</a></li>
+      </ul>
+    </li>
+    <li role="menuitem" class="context-empty-op" aria-haspopup="true">Sort by<ul role="menu">
+        <li role="menuitem"><a href="#">Name</a></li>
+        <li role="menuitem"><a href="#">Size</a></li>
+        <li role="menuitem"><a href="#">Item type</a></li>
+        <li role="menuitem"><a href="#">Date modified</a></li>
+      </ul>
+    </li>
+    <li role="menuitem" class="context-empty-op"><a href="#" onclick="updateExplorer();updateDesktop();return false">Refresh</a></li>
+    <li role="menuitem" class="menu-divider"></li>
+    <li role="menuitem" aria-haspopup="true">New<ul role="menu">
+        <li role="menuitem"><a href="#" onclick="vfsNewFile('folder');return false">Folder</a></li>
+        <li role="menuitem" class="menu-divider"></li>
+        <li role="menuitem"><a href="#" onclick="vfsNewFile('txt');return false">Text Document</a></li>
+      </ul>
+    </li>
+    <li role="menuitem" class="context-file-op menu-divider"></li>
+    <li role="menuitem" class="context-file-op"><a href="#" onclick="vfsRenameNode();return false">Rename</a></li>
+    <li role="menuitem" class="context-file-op"><a href="#" onclick="vfsDeleteNode();return false">Delete</a></li>
+    <li role="menuitem" class="context-explorer-op" aria-haspopup="true">More<ul role="menu">
+        <li role="menuitem"><a href="#" onclick="triggerExplorerUpload('file');closeContextMenu();return false">Upload file</a></li>
+        <li role="menuitem"><a href="#" onclick="triggerExplorerUpload('folder');closeContextMenu();return false">Upload folder</a></li>
+      </ul>
+    </li>
+    <li role="menuitem" class="context-file-op"><a href="#" onclick="vfsShowProperties();return false">Properties</a></li>
+    <li role="menuitem" class="menu-divider context-desktop-only"></li>
+    <li role="menuitem" class="context-desktop-only" onclick="openWindow('personalization')"><a href="#">Personalize</a></li>
+  </ul>
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.css Scrollbar Demo</title>
+  <link rel="stylesheet" href="https://unpkg.com/7.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a3a5c 0%, #2e6da4 40%, #4a9fd5 70%, #84c4e8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle background dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .page-title {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .page-subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .showcase-wrapper {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* 7.css window override for centering */
+    .window {
+      background: #f0f0f0;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Scrollable content box */
+    .scroll-box {
+      height: 240px;
+      width: 280px;
+      overflow: auto;
+      padding: 10px;
+      background: #fff;
+      border: 1px inset #ccc;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    /* Apply 7.css-style scrollbar via has-scrollbar pattern */
+    .has-scrollbar::-webkit-scrollbar {
+      width: 17px;
+      height: 17px;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-corner {
+      background: #f0f0f0;
+    }
+
+    /* Track */
+    .has-scrollbar::-webkit-scrollbar-track {
+      background: linear-gradient(to right, #e8e8e8 0%, #f5f5f5 30%);
+      border: 1px solid #b0b0b0;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-track:horizontal {
+      background: linear-gradient(to bottom, #e8e8e8 0%, #f5f5f5 30%);
+    }
+
+    /* Thumb */
+    .has-scrollbar::-webkit-scrollbar-thumb {
+      background: linear-gradient(to right, #ddd 40%, #c8c8c8 50%, #a8a8a8 100%);
+      border: 1px solid #888;
+      border-radius: 3px;
+      box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #ddd;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-thumb:horizontal {
+      background: linear-gradient(to bottom, #ddd 40%, #c8c8c8 50%, #a8a8a8 100%);
+    }
+
+    .has-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to right, #c8dff7 30%, #a8c8ef 60%, #7aaad8 100%);
+      border-color: #6a9ecb;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-thumb:active {
+      background: linear-gradient(to right, #9fc3e8 20%, #7aabdc 60%, #5090c8 100%);
+      border-color: #4a7ab8;
+    }
+
+    /* Arrow buttons */
+    .has-scrollbar::-webkit-scrollbar-button {
+      display: block;
+      width: 17px;
+      height: 17px;
+      background-color: #e8e8e8;
+      border: 1px solid #999;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-button:hover {
+      background-color: #d0e6f8;
+      border-color: #6a9ecb;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-button:active {
+      background-color: #a8c8ef;
+    }
+
+    /* UP arrow */
+    .has-scrollbar::-webkit-scrollbar-button:vertical:start:decrement {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5'%3E%3Cpolygon points='4.5,0 9,5 0,5' fill='%23555'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* DOWN arrow */
+    .has-scrollbar::-webkit-scrollbar-button:vertical:end:increment {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5'%3E%3Cpolygon points='4.5,5 9,0 0,0' fill='%23555'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* LEFT arrow */
+    .has-scrollbar::-webkit-scrollbar-button:horizontal:start:decrement {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='9' viewBox='0 0 5 9'%3E%3Cpolygon points='0,4.5 5,0 5,9' fill='%23555'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* RIGHT arrow */
+    .has-scrollbar::-webkit-scrollbar-button:horizontal:end:increment {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='9' viewBox='0 0 5 9'%3E%3Cpolygon points='5,4.5 0,0 0,9' fill='%23555'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Hide the extra scrollbar buttons */
+    .has-scrollbar::-webkit-scrollbar-button:vertical:start:increment,
+    .has-scrollbar::-webkit-scrollbar-button:vertical:end:decrement,
+    .has-scrollbar::-webkit-scrollbar-button:horizontal:start:increment,
+    .has-scrollbar::-webkit-scrollbar-button:horizontal:end:decrement {
+      display: none;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: 0.75rem;
+      border-radius: 20px;
+      padding: 3px 14px;
+      letter-spacing: 1px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .window-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      text-align: center;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .window-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Scrollbar both axes demo */
+    .scroll-box-both {
+      height: 200px;
+      width: 280px;
+      overflow: auto;
+      padding: 10px;
+      background: #fff;
+      border: 1px inset #ccc;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .wide-content {
+      width: 600px;
+    }
+
+    .window-body {
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="badge">✦ Frames 6 CSS Framework ✦</div>
+  <h1 class="page-title">7.css Scrollbar</h1>
+  <p class="page-subtitle">Classic Frames 6 styled scrollbar — built with 7.css</p>
+
+  <div class="showcase-wrapper">
+
+    <!-- Vertical Scrollbar Demo -->
+    <div class="window-card">
+      <div class="window active" style="width: 320px;">
+        <div class="title-bar">
+          <div class="title-bar-text">Vertical Scrollbar</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <div class="scroll-box has-scrollbar">
+            <p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. In nibh massa, viverra non velit vitae, scelerisque venenatis risus.</p>
+            <br>
+            <p>Sed posuere risus tellus, sit amet vehicula nunc venenatis ut. Nunc convallis augue eget odio imperdiet, eu consequat massa fringilla.</p>
+            <br>
+            <p>Curabitur in egestas justo, vel fermentum ante. Lorem ipsum dolor sit amet, consectetur elit. Cras ullamcorper non nibh et placerat.</p>
+            <br>
+            <p>Nullam ornare lectus eget consequat dignissim. Fusce varius nisl non augue tincidunt, id accumsan arcu cursus.</p>
+            <br>
+            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin euismod mauris in turpis tincidunt.</p>
+            <br>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer fringilla, lorem nec tincidunt feugiat.</p>
+            <br>
+            <p>Aliquam erat volutpat. Quisque at neque nec nisl suscipit hendrerit. Donec non metus vitae eros commodo accumsan in sit amet felis.</p>
+          </div>
+        </div>
+        <div class="status-bar">
+          <p class="status-bar-field">Scroll ↕ to explore</p>
+          <p class="status-bar-field">7.css v2</p>
+        </div>
+      </div>
+      <span class="window-label">▲ Vertical scroll only</span>
+    </div>
+
+    <!-- Both Axes Scrollbar Demo -->
+    <div class="window-card">
+      <div class="window active" style="width: 320px;">
+        <div class="title-bar">
+          <div class="title-bar-text">Both Axes Scrollbar</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <div class="scroll-box-both has-scrollbar">
+            <div class="wide-content">
+              <p><strong>Horizontal + Vertical</strong> — This content is wider than its container, so you can scroll both ways.</p>
+              <br>
+              <p>Frames 6 uses the iconic glass Aero UI. The scrollbars were part of this visual refresh — featuring subtle gradients, rounded thumbs, and arrow button controls.</p>
+              <br>
+              <p>Drag the scrollbar thumb, click the arrow buttons, or use your mouse wheel to navigate this classic Frames 6-style experience.</p>
+              <br>
+              <p>7.css recreates this look faithfully using pure CSS, bringing retro Frames 6 aesthetics to modern web applications.</p>
+              <br>
+              <p>Try scrolling right → to see the horizontal scrollbar in action!</p>
+            </div>
+          </div>
+        </div>
+        <div class="status-bar">
+          <p class="status-bar-field">Scroll ↕ ↔ to explore</p>
+          <p class="status-bar-field">WebKit only</p>
+        </div>
+      </div>
+      <span class="window-label">▲ Vertical + Horizontal scroll</span>
+    </div>
+
+  </div>
+
+</body>
+</html>

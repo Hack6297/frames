@@ -1,0 +1,298 @@
+{
+  "profile": {
+    "email": "guest@offline",
+    "displayName": "Guest",
+    "createdAt": "2026-07-03T17:33:26"
+  },
+  "state": {
+    "settings": {
+      "wallpaper": "win7_wallpapers/img0.jpg",
+      "aeroColor": "rgba(30,60,110,0.85)",
+      "titlebarColor": "rgba(30,60,110,0.3)",
+      "username": "Guest",
+      "themes": [],
+      "activeTheme": null,
+      "clockFormat": "12h",
+      "stickyNotes": [],
+      "volume": 65,
+      "taskbarBrightness": 100,
+      "titlebarBrightness": 100,
+      "transparencyEffects": true,
+      "pinnedTaskbar": [
+        "ie",
+        "explorer",
+        "mediaplayer"
+      ],
+      "defaultDesktopWidgetsPlaced": true,
+      "installedMarketplaceApps": [],
+      "themeType": "aero",
+      "activeThemeId": "aero"
+    },
+    "vfs": {
+      "C:": {
+        "type": "drive",
+        "children": {
+          "Windows": {
+            "type": "folder",
+            "children": {}
+          },
+          "Users": {
+            "type": "folder",
+            "children": {
+              "Admin": {
+                "type": "folder",
+                "children": {
+                  "Desktop": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Documents": {
+                    "type": "folder",
+                    "children": {
+                      "Project Proposal.docx": {
+                        "type": "file",
+                        "content": "<h1>Annual Report 2009</h1><p>Sample Word document.</p>",
+                        "modified": "04/08/2009"
+                      },
+                      "Budget.xlsx": {
+                        "type": "file",
+                        "content": "{\"A1\":\"Item\",\"B1\":\"Cost\",\"A2\":\"Rent\",\"B2\":\"1200\",\"A3\":\"Food\",\"B3\":\"400\"}",
+                        "modified": "04/05/2009"
+                      },
+                      "New Feature Ideas.txt": {
+                        "type": "file",
+                        "content": "1. Glassmorphism icons\n2. Dynamic wallpaper engine\n3. Integrated search",
+                        "modified": "04/08/2009"
+                      },
+                      "readme.txt": {
+                        "type": "file",
+                        "content": "Welcome to Windows 7!",
+                        "modified": "03/30/2009"
+                      }
+                    }
+                  },
+                  "Downloads": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Music": {
+                    "type": "folder",
+                    "children": {
+                      "Kalimba.mp3": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      },
+                      "Maid with the Flaxen Hair.mp3": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      },
+                      "Sleep Away.mp3": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      }
+                    }
+                  },
+                  "Pictures": {
+                    "type": "folder",
+                    "children": {
+                      "Desert.jpg": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      },
+                      "Hydrangeas.jpg": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      },
+                      "Lighthouse.jpg": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      }
+                    }
+                  },
+                  "Videos": {
+                    "type": "folder",
+                    "children": {
+                      "Wildlife.wmv": {
+                        "type": "file",
+                        "content": "",
+                        "modified": "03/30/2009"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Program Files": {
+            "type": "folder",
+            "children": {}
+          }
+        }
+      },
+      "D:": {
+        "type": "drive",
+        "children": {}
+      },
+      "RecycleBin": {
+        "type": "recyclebin",
+        "children": {}
+      }
+    },
+    "messenger": {
+      "contacts": [
+        {
+          "id": "alex",
+          "name": "Alex Mercer",
+          "group": "Favorites",
+          "status": "Online",
+          "note": "Trying the new Aero shell tonight.",
+          "color": "#45b6ff",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "sophie",
+          "name": "Sophie Lane",
+          "group": "Favorites",
+          "status": "Busy",
+          "note": "Rendering some icons.",
+          "color": "#7a9dff",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "nina",
+          "name": "Nina Shah",
+          "group": "Friends",
+          "status": "Online",
+          "note": "Listening to Kalimba.",
+          "color": "#4fd3b3",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "owen",
+          "name": "Owen Park",
+          "group": "Friends",
+          "status": "Away",
+          "note": "Back after dinner.",
+          "color": "#ffb34d",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "lena",
+          "name": "Lena Morse",
+          "group": "Family",
+          "status": "Online",
+          "note": "At the family computer.",
+          "color": "#f48aa8",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "leo",
+          "name": "Leo Hart",
+          "group": "Family",
+          "status": "Offline",
+          "note": "Signed out.",
+          "color": "#8ca2ba",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "paul",
+          "name": "Paul Tan",
+          "group": "Work",
+          "status": "Busy",
+          "note": "Fixing title-bar polish.",
+          "color": "#64d8ff",
+          "email": "",
+          "kind": "demo"
+        },
+        {
+          "id": "yumi",
+          "name": "Yumi Cole",
+          "group": "Work",
+          "status": "Offline",
+          "note": "Be right back tomorrow.",
+          "color": "#9a92ff",
+          "email": "",
+          "kind": "demo"
+        }
+      ],
+      "conversations": {
+        "alex": [
+          {
+            "from": "them",
+            "text": "Did you finish the Windows 7 Messenger shell?",
+            "time": "6:12 PM"
+          },
+          {
+            "from": "me",
+            "text": "I am almost there. I just need the contact window and chat layout to feel authentic.",
+            "time": "6:14 PM"
+          }
+        ],
+        "sophie": [
+          {
+            "from": "them",
+            "text": "Use the messenger icon for the app and the message icon for chats.",
+            "time": "5:48 PM"
+          }
+        ],
+        "nina": [
+          {
+            "from": "them",
+            "text": "Send me the WLM build when the glass is done.",
+            "time": "4:31 PM"
+          }
+        ],
+        "owen": [
+          {
+            "from": "them",
+            "text": "Can you pin Messenger to the taskbar from Start now?",
+            "time": "3:05 PM"
+          }
+        ],
+        "lena": [
+          {
+            "from": "them",
+            "text": "That old contact list instantly brings back memories.",
+            "time": "2:42 PM"
+          }
+        ],
+        "leo": [],
+        "paul": [
+          {
+            "from": "them",
+            "text": "Match the AeroOS Alpha reflection more closely.",
+            "time": "1:16 PM"
+          }
+        ],
+        "yumi": []
+      },
+      "state": {
+        "status": "Online",
+        "personalMessage": "Back on Windows Live Messenger.",
+        "search": "",
+        "selected": "alex",
+        "currentChat": "alex",
+        "showOffline": true,
+        "groups": {
+          "Favorites": true,
+          "Friends": true,
+          "Family": true,
+          "Work": true,
+          "Windows Live": true
+        }
+      }
+    }
+  }
+}

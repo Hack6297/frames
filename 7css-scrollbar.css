@@ -1,0 +1,391 @@
+/* Scrollbars copied from each build's scrollbars.html example */
+.has-scrollbar::-webkit-scrollbar,
+.start-screen-body::-webkit-scrollbar,
+#metro-app-body::-webkit-scrollbar,
+#notification-center-panel::-webkit-scrollbar,
+#explorer-content::-webkit-scrollbar,
+.window-body::-webkit-scrollbar,
+.explorer-content::-webkit-scrollbar,
+.wmc-main::-webkit-scrollbar,
+.widgets-gallery-main::-webkit-scrollbar,
+.wlm-contact-list::-webkit-scrollbar,
+.wlm-chat-log::-webkit-scrollbar,
+.cmd-output::-webkit-scrollbar,
+.ie-favorites-menu::-webkit-scrollbar,
+.start-programs::-webkit-scrollbar,
+.start-right-list::-webkit-scrollbar,
+.scroll-box::-webkit-scrollbar,
+.scroll-box-both::-webkit-scrollbar {
+  width: 17px;
+  height: 17px;
+}
+
+.has-scrollbar::-webkit-scrollbar-corner,
+.start-screen-body::-webkit-scrollbar-corner,
+#metro-app-body::-webkit-scrollbar-corner,
+#notification-center-panel::-webkit-scrollbar-corner,
+#explorer-content::-webkit-scrollbar-corner,
+.window-body::-webkit-scrollbar-corner,
+.explorer-content::-webkit-scrollbar-corner,
+.wmc-main::-webkit-scrollbar-corner,
+.widgets-gallery-main::-webkit-scrollbar-corner,
+.wlm-contact-list::-webkit-scrollbar-corner,
+.wlm-chat-log::-webkit-scrollbar-corner,
+.cmd-output::-webkit-scrollbar-corner,
+.ie-favorites-menu::-webkit-scrollbar-corner,
+.start-programs::-webkit-scrollbar-corner,
+.start-right-list::-webkit-scrollbar-corner,
+.scroll-box::-webkit-scrollbar-corner,
+.scroll-box-both::-webkit-scrollbar-corner {
+  background: #f0f0f0;
+}
+
+.has-scrollbar::-webkit-scrollbar-track,
+.start-screen-body::-webkit-scrollbar-track,
+#metro-app-body::-webkit-scrollbar-track,
+#notification-center-panel::-webkit-scrollbar-track,
+#explorer-content::-webkit-scrollbar-track,
+.window-body::-webkit-scrollbar-track,
+.explorer-content::-webkit-scrollbar-track,
+.wmc-main::-webkit-scrollbar-track,
+.widgets-gallery-main::-webkit-scrollbar-track,
+.wlm-contact-list::-webkit-scrollbar-track,
+.wlm-chat-log::-webkit-scrollbar-track,
+.cmd-output::-webkit-scrollbar-track,
+.ie-favorites-menu::-webkit-scrollbar-track,
+.start-programs::-webkit-scrollbar-track,
+.start-right-list::-webkit-scrollbar-track,
+.scroll-box::-webkit-scrollbar-track,
+.scroll-box-both::-webkit-scrollbar-track {
+  background: linear-gradient(to right, #e8e8e8 0%, #f5f5f5 30%);
+  border: 1px solid #b0b0b0;
+}
+
+.has-scrollbar::-webkit-scrollbar-track:horizontal,
+.start-screen-body::-webkit-scrollbar-track:horizontal,
+#metro-app-body::-webkit-scrollbar-track:horizontal,
+#notification-center-panel::-webkit-scrollbar-track:horizontal,
+#explorer-content::-webkit-scrollbar-track:horizontal,
+.window-body::-webkit-scrollbar-track:horizontal,
+.explorer-content::-webkit-scrollbar-track:horizontal,
+.wmc-main::-webkit-scrollbar-track:horizontal,
+.widgets-gallery-main::-webkit-scrollbar-track:horizontal,
+.wlm-contact-list::-webkit-scrollbar-track:horizontal,
+.wlm-chat-log::-webkit-scrollbar-track:horizontal,
+.cmd-output::-webkit-scrollbar-track:horizontal,
+.ie-favorites-menu::-webkit-scrollbar-track:horizontal,
+.start-programs::-webkit-scrollbar-track:horizontal,
+.start-right-list::-webkit-scrollbar-track:horizontal,
+.scroll-box::-webkit-scrollbar-track:horizontal,
+.scroll-box-both::-webkit-scrollbar-track:horizontal {
+  background: linear-gradient(to bottom, #e8e8e8 0%, #f5f5f5 30%);
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb,
+.start-screen-body::-webkit-scrollbar-thumb,
+#metro-app-body::-webkit-scrollbar-thumb,
+#notification-center-panel::-webkit-scrollbar-thumb,
+#explorer-content::-webkit-scrollbar-thumb,
+.window-body::-webkit-scrollbar-thumb,
+.explorer-content::-webkit-scrollbar-thumb,
+.wmc-main::-webkit-scrollbar-thumb,
+.widgets-gallery-main::-webkit-scrollbar-thumb,
+.wlm-contact-list::-webkit-scrollbar-thumb,
+.wlm-chat-log::-webkit-scrollbar-thumb,
+.cmd-output::-webkit-scrollbar-thumb,
+.ie-favorites-menu::-webkit-scrollbar-thumb,
+.start-programs::-webkit-scrollbar-thumb,
+.start-right-list::-webkit-scrollbar-thumb,
+.scroll-box::-webkit-scrollbar-thumb,
+.scroll-box-both::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #ddd 40%, #c8c8c8 50%, #a8a8a8 100%);
+  border: 1px solid #888;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #ddd;
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb:horizontal,
+.start-screen-body::-webkit-scrollbar-thumb:horizontal,
+#metro-app-body::-webkit-scrollbar-thumb:horizontal,
+#notification-center-panel::-webkit-scrollbar-thumb:horizontal,
+#explorer-content::-webkit-scrollbar-thumb:horizontal,
+.window-body::-webkit-scrollbar-thumb:horizontal,
+.explorer-content::-webkit-scrollbar-thumb:horizontal,
+.wmc-main::-webkit-scrollbar-thumb:horizontal,
+.widgets-gallery-main::-webkit-scrollbar-thumb:horizontal,
+.wlm-contact-list::-webkit-scrollbar-thumb:horizontal,
+.wlm-chat-log::-webkit-scrollbar-thumb:horizontal,
+.cmd-output::-webkit-scrollbar-thumb:horizontal,
+.ie-favorites-menu::-webkit-scrollbar-thumb:horizontal,
+.start-programs::-webkit-scrollbar-thumb:horizontal,
+.start-right-list::-webkit-scrollbar-thumb:horizontal,
+.scroll-box::-webkit-scrollbar-thumb:horizontal,
+.scroll-box-both::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(to bottom, #ddd 40%, #c8c8c8 50%, #a8a8a8 100%);
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb:hover,
+.start-screen-body::-webkit-scrollbar-thumb:hover,
+#metro-app-body::-webkit-scrollbar-thumb:hover,
+#notification-center-panel::-webkit-scrollbar-thumb:hover,
+#explorer-content::-webkit-scrollbar-thumb:hover,
+.window-body::-webkit-scrollbar-thumb:hover,
+.explorer-content::-webkit-scrollbar-thumb:hover,
+.wmc-main::-webkit-scrollbar-thumb:hover,
+.widgets-gallery-main::-webkit-scrollbar-thumb:hover,
+.wlm-contact-list::-webkit-scrollbar-thumb:hover,
+.wlm-chat-log::-webkit-scrollbar-thumb:hover,
+.cmd-output::-webkit-scrollbar-thumb:hover,
+.ie-favorites-menu::-webkit-scrollbar-thumb:hover,
+.start-programs::-webkit-scrollbar-thumb:hover,
+.start-right-list::-webkit-scrollbar-thumb:hover,
+.scroll-box::-webkit-scrollbar-thumb:hover,
+.scroll-box-both::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #c8dff7 30%, #a8c8ef 60%, #7aaad8 100%);
+  border-color: #6a9ecb;
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb:active,
+.start-screen-body::-webkit-scrollbar-thumb:active,
+#metro-app-body::-webkit-scrollbar-thumb:active,
+#notification-center-panel::-webkit-scrollbar-thumb:active,
+#explorer-content::-webkit-scrollbar-thumb:active,
+.window-body::-webkit-scrollbar-thumb:active,
+.explorer-content::-webkit-scrollbar-thumb:active,
+.wmc-main::-webkit-scrollbar-thumb:active,
+.widgets-gallery-main::-webkit-scrollbar-thumb:active,
+.wlm-contact-list::-webkit-scrollbar-thumb:active,
+.wlm-chat-log::-webkit-scrollbar-thumb:active,
+.cmd-output::-webkit-scrollbar-thumb:active,
+.ie-favorites-menu::-webkit-scrollbar-thumb:active,
+.start-programs::-webkit-scrollbar-thumb:active,
+.start-right-list::-webkit-scrollbar-thumb:active,
+.scroll-box::-webkit-scrollbar-thumb:active,
+.scroll-box-both::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to right, #9fc3e8 20%, #7aabdc 60%, #5090c8 100%);
+  border-color: #4a7ab8;
+}
+
+.has-scrollbar::-webkit-scrollbar-button,
+.start-screen-body::-webkit-scrollbar-button,
+#metro-app-body::-webkit-scrollbar-button,
+#notification-center-panel::-webkit-scrollbar-button,
+#explorer-content::-webkit-scrollbar-button,
+.window-body::-webkit-scrollbar-button,
+.explorer-content::-webkit-scrollbar-button,
+.wmc-main::-webkit-scrollbar-button,
+.widgets-gallery-main::-webkit-scrollbar-button,
+.wlm-contact-list::-webkit-scrollbar-button,
+.wlm-chat-log::-webkit-scrollbar-button,
+.cmd-output::-webkit-scrollbar-button,
+.ie-favorites-menu::-webkit-scrollbar-button,
+.start-programs::-webkit-scrollbar-button,
+.start-right-list::-webkit-scrollbar-button,
+.scroll-box::-webkit-scrollbar-button,
+.scroll-box-both::-webkit-scrollbar-button {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-color: #e8e8e8;
+  border: 1px solid #999;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:hover,
+.start-screen-body::-webkit-scrollbar-button:hover,
+#metro-app-body::-webkit-scrollbar-button:hover,
+#notification-center-panel::-webkit-scrollbar-button:hover,
+#explorer-content::-webkit-scrollbar-button:hover,
+.window-body::-webkit-scrollbar-button:hover,
+.explorer-content::-webkit-scrollbar-button:hover,
+.wmc-main::-webkit-scrollbar-button:hover,
+.widgets-gallery-main::-webkit-scrollbar-button:hover,
+.wlm-contact-list::-webkit-scrollbar-button:hover,
+.wlm-chat-log::-webkit-scrollbar-button:hover,
+.cmd-output::-webkit-scrollbar-button:hover,
+.ie-favorites-menu::-webkit-scrollbar-button:hover,
+.start-programs::-webkit-scrollbar-button:hover,
+.start-right-list::-webkit-scrollbar-button:hover,
+.scroll-box::-webkit-scrollbar-button:hover,
+.scroll-box-both::-webkit-scrollbar-button:hover {
+  background-color: #d0e6f8;
+  border-color: #6a9ecb;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:active,
+.start-screen-body::-webkit-scrollbar-button:active,
+#metro-app-body::-webkit-scrollbar-button:active,
+#notification-center-panel::-webkit-scrollbar-button:active,
+#explorer-content::-webkit-scrollbar-button:active,
+.window-body::-webkit-scrollbar-button:active,
+.explorer-content::-webkit-scrollbar-button:active,
+.wmc-main::-webkit-scrollbar-button:active,
+.widgets-gallery-main::-webkit-scrollbar-button:active,
+.wlm-contact-list::-webkit-scrollbar-button:active,
+.wlm-chat-log::-webkit-scrollbar-button:active,
+.cmd-output::-webkit-scrollbar-button:active,
+.ie-favorites-menu::-webkit-scrollbar-button:active,
+.start-programs::-webkit-scrollbar-button:active,
+.start-right-list::-webkit-scrollbar-button:active,
+.scroll-box::-webkit-scrollbar-button:active,
+.scroll-box-both::-webkit-scrollbar-button:active {
+  background-color: #a8c8ef;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:vertical:start:decrement,
+.start-screen-body::-webkit-scrollbar-button:vertical:start:decrement,
+#metro-app-body::-webkit-scrollbar-button:vertical:start:decrement,
+#notification-center-panel::-webkit-scrollbar-button:vertical:start:decrement,
+#explorer-content::-webkit-scrollbar-button:vertical:start:decrement,
+.window-body::-webkit-scrollbar-button:vertical:start:decrement,
+.explorer-content::-webkit-scrollbar-button:vertical:start:decrement,
+.wmc-main::-webkit-scrollbar-button:vertical:start:decrement,
+.widgets-gallery-main::-webkit-scrollbar-button:vertical:start:decrement,
+.wlm-contact-list::-webkit-scrollbar-button:vertical:start:decrement,
+.wlm-chat-log::-webkit-scrollbar-button:vertical:start:decrement,
+.cmd-output::-webkit-scrollbar-button:vertical:start:decrement,
+.ie-favorites-menu::-webkit-scrollbar-button:vertical:start:decrement,
+.start-programs::-webkit-scrollbar-button:vertical:start:decrement,
+.start-right-list::-webkit-scrollbar-button:vertical:start:decrement,
+.scroll-box::-webkit-scrollbar-button:vertical:start:decrement,
+.scroll-box-both::-webkit-scrollbar-button:vertical:start:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5'%3E%3Cpolygon points='4.5,0 9,5 0,5' fill='%23555'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:vertical:end:increment,
+.start-screen-body::-webkit-scrollbar-button:vertical:end:increment,
+#metro-app-body::-webkit-scrollbar-button:vertical:end:increment,
+#notification-center-panel::-webkit-scrollbar-button:vertical:end:increment,
+#explorer-content::-webkit-scrollbar-button:vertical:end:increment,
+.window-body::-webkit-scrollbar-button:vertical:end:increment,
+.explorer-content::-webkit-scrollbar-button:vertical:end:increment,
+.wmc-main::-webkit-scrollbar-button:vertical:end:increment,
+.widgets-gallery-main::-webkit-scrollbar-button:vertical:end:increment,
+.wlm-contact-list::-webkit-scrollbar-button:vertical:end:increment,
+.wlm-chat-log::-webkit-scrollbar-button:vertical:end:increment,
+.cmd-output::-webkit-scrollbar-button:vertical:end:increment,
+.ie-favorites-menu::-webkit-scrollbar-button:vertical:end:increment,
+.start-programs::-webkit-scrollbar-button:vertical:end:increment,
+.start-right-list::-webkit-scrollbar-button:vertical:end:increment,
+.scroll-box::-webkit-scrollbar-button:vertical:end:increment,
+.scroll-box-both::-webkit-scrollbar-button:vertical:end:increment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5'%3E%3Cpolygon points='4.5,5 9,0 0,0' fill='%23555'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:horizontal:start:decrement,
+.start-screen-body::-webkit-scrollbar-button:horizontal:start:decrement,
+#metro-app-body::-webkit-scrollbar-button:horizontal:start:decrement,
+#notification-center-panel::-webkit-scrollbar-button:horizontal:start:decrement,
+#explorer-content::-webkit-scrollbar-button:horizontal:start:decrement,
+.window-body::-webkit-scrollbar-button:horizontal:start:decrement,
+.explorer-content::-webkit-scrollbar-button:horizontal:start:decrement,
+.wmc-main::-webkit-scrollbar-button:horizontal:start:decrement,
+.widgets-gallery-main::-webkit-scrollbar-button:horizontal:start:decrement,
+.wlm-contact-list::-webkit-scrollbar-button:horizontal:start:decrement,
+.wlm-chat-log::-webkit-scrollbar-button:horizontal:start:decrement,
+.cmd-output::-webkit-scrollbar-button:horizontal:start:decrement,
+.ie-favorites-menu::-webkit-scrollbar-button:horizontal:start:decrement,
+.start-programs::-webkit-scrollbar-button:horizontal:start:decrement,
+.start-right-list::-webkit-scrollbar-button:horizontal:start:decrement,
+.scroll-box::-webkit-scrollbar-button:horizontal:start:decrement,
+.scroll-box-both::-webkit-scrollbar-button:horizontal:start:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='9' viewBox='0 0 5 9'%3E%3Cpolygon points='0,4.5 5,0 5,9' fill='%23555'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:horizontal:end:increment,
+.start-screen-body::-webkit-scrollbar-button:horizontal:end:increment,
+#metro-app-body::-webkit-scrollbar-button:horizontal:end:increment,
+#notification-center-panel::-webkit-scrollbar-button:horizontal:end:increment,
+#explorer-content::-webkit-scrollbar-button:horizontal:end:increment,
+.window-body::-webkit-scrollbar-button:horizontal:end:increment,
+.explorer-content::-webkit-scrollbar-button:horizontal:end:increment,
+.wmc-main::-webkit-scrollbar-button:horizontal:end:increment,
+.widgets-gallery-main::-webkit-scrollbar-button:horizontal:end:increment,
+.wlm-contact-list::-webkit-scrollbar-button:horizontal:end:increment,
+.wlm-chat-log::-webkit-scrollbar-button:horizontal:end:increment,
+.cmd-output::-webkit-scrollbar-button:horizontal:end:increment,
+.ie-favorites-menu::-webkit-scrollbar-button:horizontal:end:increment,
+.start-programs::-webkit-scrollbar-button:horizontal:end:increment,
+.start-right-list::-webkit-scrollbar-button:horizontal:end:increment,
+.scroll-box::-webkit-scrollbar-button:horizontal:end:increment,
+.scroll-box-both::-webkit-scrollbar-button:horizontal:end:increment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='9' viewBox='0 0 5 9'%3E%3Cpolygon points='5,4.5 0,0 0,9' fill='%23555'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.has-scrollbar::-webkit-scrollbar-button:vertical:start:increment,
+.start-screen-body::-webkit-scrollbar-button:vertical:start:increment,
+#metro-app-body::-webkit-scrollbar-button:vertical:start:increment,
+#notification-center-panel::-webkit-scrollbar-button:vertical:start:increment,
+#explorer-content::-webkit-scrollbar-button:vertical:start:increment,
+.window-body::-webkit-scrollbar-button:vertical:start:increment,
+.explorer-content::-webkit-scrollbar-button:vertical:start:increment,
+.wmc-main::-webkit-scrollbar-button:vertical:start:increment,
+.widgets-gallery-main::-webkit-scrollbar-button:vertical:start:increment,
+.wlm-contact-list::-webkit-scrollbar-button:vertical:start:increment,
+.wlm-chat-log::-webkit-scrollbar-button:vertical:start:increment,
+.cmd-output::-webkit-scrollbar-button:vertical:start:increment,
+.ie-favorites-menu::-webkit-scrollbar-button:vertical:start:increment,
+.start-programs::-webkit-scrollbar-button:vertical:start:increment,
+.start-right-list::-webkit-scrollbar-button:vertical:start:increment,
+.scroll-box::-webkit-scrollbar-button:vertical:start:increment,
+.scroll-box-both::-webkit-scrollbar-button:vertical:start:increment,
+.has-scrollbar::-webkit-scrollbar-button:vertical:end:decrement,
+.start-screen-body::-webkit-scrollbar-button:vertical:end:decrement,
+#metro-app-body::-webkit-scrollbar-button:vertical:end:decrement,
+#notification-center-panel::-webkit-scrollbar-button:vertical:end:decrement,
+#explorer-content::-webkit-scrollbar-button:vertical:end:decrement,
+.window-body::-webkit-scrollbar-button:vertical:end:decrement,
+.explorer-content::-webkit-scrollbar-button:vertical:end:decrement,
+.wmc-main::-webkit-scrollbar-button:vertical:end:decrement,
+.widgets-gallery-main::-webkit-scrollbar-button:vertical:end:decrement,
+.wlm-contact-list::-webkit-scrollbar-button:vertical:end:decrement,
+.wlm-chat-log::-webkit-scrollbar-button:vertical:end:decrement,
+.cmd-output::-webkit-scrollbar-button:vertical:end:decrement,
+.ie-favorites-menu::-webkit-scrollbar-button:vertical:end:decrement,
+.start-programs::-webkit-scrollbar-button:vertical:end:decrement,
+.start-right-list::-webkit-scrollbar-button:vertical:end:decrement,
+.scroll-box::-webkit-scrollbar-button:vertical:end:decrement,
+.scroll-box-both::-webkit-scrollbar-button:vertical:end:decrement,
+.has-scrollbar::-webkit-scrollbar-button:horizontal:start:increment,
+.start-screen-body::-webkit-scrollbar-button:horizontal:start:increment,
+#metro-app-body::-webkit-scrollbar-button:horizontal:start:increment,
+#notification-center-panel::-webkit-scrollbar-button:horizontal:start:increment,
+#explorer-content::-webkit-scrollbar-button:horizontal:start:increment,
+.window-body::-webkit-scrollbar-button:horizontal:start:increment,
+.explorer-content::-webkit-scrollbar-button:horizontal:start:increment,
+.wmc-main::-webkit-scrollbar-button:horizontal:start:increment,
+.widgets-gallery-main::-webkit-scrollbar-button:horizontal:start:increment,
+.wlm-contact-list::-webkit-scrollbar-button:horizontal:start:increment,
+.wlm-chat-log::-webkit-scrollbar-button:horizontal:start:increment,
+.cmd-output::-webkit-scrollbar-button:horizontal:start:increment,
+.ie-favorites-menu::-webkit-scrollbar-button:horizontal:start:increment,
+.start-programs::-webkit-scrollbar-button:horizontal:start:increment,
+.start-right-list::-webkit-scrollbar-button:horizontal:start:increment,
+.scroll-box::-webkit-scrollbar-button:horizontal:start:increment,
+.scroll-box-both::-webkit-scrollbar-button:horizontal:start:increment,
+.has-scrollbar::-webkit-scrollbar-button:horizontal:end:decrement,
+.start-screen-body::-webkit-scrollbar-button:horizontal:end:decrement,
+#metro-app-body::-webkit-scrollbar-button:horizontal:end:decrement,
+#notification-center-panel::-webkit-scrollbar-button:horizontal:end:decrement,
+#explorer-content::-webkit-scrollbar-button:horizontal:end:decrement,
+.window-body::-webkit-scrollbar-button:horizontal:end:decrement,
+.explorer-content::-webkit-scrollbar-button:horizontal:end:decrement,
+.wmc-main::-webkit-scrollbar-button:horizontal:end:decrement,
+.widgets-gallery-main::-webkit-scrollbar-button:horizontal:end:decrement,
+.wlm-contact-list::-webkit-scrollbar-button:horizontal:end:decrement,
+.wlm-chat-log::-webkit-scrollbar-button:horizontal:end:decrement,
+.cmd-output::-webkit-scrollbar-button:horizontal:end:decrement,
+.ie-favorites-menu::-webkit-scrollbar-button:horizontal:end:decrement,
+.start-programs::-webkit-scrollbar-button:horizontal:end:decrement,
+.start-right-list::-webkit-scrollbar-button:horizontal:end:decrement,
+.scroll-box::-webkit-scrollbar-button:horizontal:end:decrement,
+.scroll-box-both::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+}

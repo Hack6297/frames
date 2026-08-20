@@ -1,0 +1,150 @@
+{
+  "profile": {
+    "email": "gabrielm6297@gmail.con",
+    "displayName": "gabrielm6297",
+    "createdAt": "2026-05-02T20:10:13"
+  },
+  "state": {
+    "settings": {
+      "wallpaper": "win7_wallpapers/img0.jpg",
+      "aeroColor": "rgba(168,206,255,0.01)",
+      "titlebarColor": "rgba(168,206,255,0.18)",
+      "username": "gabrielm6297",
+      "themes": [],
+      "activeTheme": null,
+      "clockFormat": "12h",
+      "stickyNotes": [],
+      "volume": 65,
+      "taskbarBrightness": 87,
+      "titlebarBrightness": 100,
+      "transparencyEffects": true,
+      "pinnedTaskbar": [
+        "ie",
+        "explorer",
+        "mediaplayer"
+      ],
+      "startTileOrder": [
+        "desktopshortcut",
+        "calendar",
+        "calc",
+        "camera",
+        "finance",
+        "internetexplorer",
+        "mail",
+        "maps",
+        "messaging",
+        "music",
+        "people",
+        "photos",
+        "reader",
+        "remotedesktop",
+        "skydrive",
+        "store",
+        "video",
+        "weather",
+        "xboxcompanion",
+        "xboxlivegames",
+        "cmd",
+        "messenger",
+        "mediacenter",
+        "widgets",
+        "explorer",
+        "panel",
+        "notepad",
+        "paint",
+        "mediaplayer"
+      ],
+      "startTileSizes": {
+        "desktopshortcut": "wide"
+      },
+      "installedDesktopApps": [
+        "cmd",
+        "widgets"
+      ],
+      "installedMarketplaceApps": [],
+      "startTileLayoutVersion": "8250-consumer-preview-v1"
+    },
+    "vfs": {
+      "C:": {
+        "type": "drive",
+        "children": {
+          "Windows": {
+            "type": "folder",
+            "children": {}
+          },
+          "Users": {
+            "type": "folder",
+            "children": {
+              "gabrielm6297": {
+                "type": "folder",
+                "children": {
+                  "Desktop": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Documents": {
+                    "type": "folder",
+                    "children": {
+                      "Welcome.txt": {
+                        "type": "file",
+                        "content": "Welcome back, gabrielm6297. Your Windows 7 desktop is now saved to this account.",
+                        "modified": "04/16/2026"
+                      }
+                    }
+                  },
+                  "Downloads": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Pictures": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Music": {
+                    "type": "folder",
+                    "children": {}
+                  },
+                  "Videos": {
+                    "type": "folder",
+                    "children": {}
+                  }
+                }
+              }
+            }
+          },
+          "Program Files": {
+            "type": "folder",
+            "children": {}
+          }
+        }
+      },
+      "D:": {
+        "type": "drive",
+        "children": {}
+      },
+      "RecycleBin": {
+        "type": "recyclebin",
+        "children": {}
+      }
+    },
+    "messenger": {
+      "contacts": [],
+      "conversations": {},
+      "state": {
+        "status": "Online",
+        "personalMessage": "Back on Windows Live Messenger.",
+        "search": "",
+        "selected": "",
+        "currentChat": "",
+        "showOffline": true,
+        "groups": {
+          "Favorites": true,
+          "Friends": true,
+          "Family": true,
+          "Work": true,
+          "Windows Live": true
+        }
+      }
+    }
+  }
+}

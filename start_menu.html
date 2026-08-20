@@ -1,0 +1,250 @@
+<div id="startmenu">
+  <ul id="applications">
+    <li>
+      <a href="//techumber.com"><img src="img/chrome.png" alt="" />Google Chrome</a>
+    </li>
+    <li>
+      <a href="//techumber.com"><img src="img/notepad.jpg" alt="" />Notepad</a>
+    </li>
+    <li>
+      <a href="//techumber.com"><img src="img/firefox-32.png" alt="" />Mozilla Firefox</a>
+    </li>
+    <li>
+      <a href="//techumber.com"><img src="img/ie.png" alt="" />Frames Internet</a>
+    </li>
+    <li>
+      <a href="//techumber.com"><img src="img/vs2010.jpg" alt="" />Frames Developer Studio</a>
+    </li>
+    <li>
+      <a href="//techumber.com"><img src="img/paint.jpg" alt="" />Paint</a>
+    </li>
+    <li class="search">
+      <form action="">
+        <input type="text" placeholder="Search programs and files" />
+      </form>
+    </li>
+  </ul>
+  <ul id="sysdir">
+    <li class="user"><img src="img/user.png" alt="" /></li>
+    <li>
+      <a href="//techumber.com"><span>Documents</span></a>
+    </li>
+    <li>
+      <a href="//techumber.com"><span>Pictures</span></a>
+    </li>
+    <li>
+      <a href="//techumber.com"><span>Music</span></a>
+    </li>
+    <li>
+      <a href="//techumber.com"><span>Computer</span></a>
+    </li>
+    <li>
+      <a href="//techumber.com"><span>Network</span></a>
+    </li>
+    <li>
+      <a href="//techumber.com"><span>Connect to</span></a>
+    </li>
+  </ul>
+</div>
+<div id="bottom">
+  <div class="start"></div>
+</div>
+#applications {
+  -moz-box-shadow: 0 0 1px #fff;
+  -webkit-box-shadow: 0 0 1px #fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background: white;
+  border: solid 1px #365167;
+  box-shadow: 0 0 1px #fff;
+  display: block;
+  float: left;
+  list-style: none;
+  margin: 7px 0 7px 7px;
+  padding: 0;
+}
+#applications li {
+  list-style: none;
+}
+
+#applications li a {
+  border: solid 1px transparent;
+  color: #4b4b4b;
+  display: block;
+  margin: 3px;
+  min-width: 220px;
+  padding: 3px;
+  text-decoration: none;
+}
+#applications li a:hover {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-box-shadow: inset 0 0 1px #fff;
+  -webkit-box-shadow: inset 0 0 1px #fff;
+  box-shadow: inset 0 0 1px #fff;
+  background-color: #cfe3fd;
+  background: -moz-linear-gradient(top, #dcebfd, #c2dcfd);
+  background: -webkit-gradient(linear, center top, center bottom, from(#dcebfd), to(#c2dcfd));
+  border: solid 1px #7da2ce;
+}
+#applications li a img {
+  border: 0;
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+}
+.search form {
+  background: #e4f4fc;
+  border-top: 2px solid #bee6fd;
+  padding: 10px 0;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  display: block;
+  padding: 3px;
+  height: 30px;
+}
+.search input {
+  background: white;
+  border: 1px solid #aaa;
+  padding: 3px 5px;
+  margin: 0 14px;
+  font: italic 12px Calibri, Arial, Sans-Serif;
+  color: #999;
+  width: 188px;
+  position: relative;
+  outline: none;
+  background: white url(img/search.png) no-repeat scroll 178px center;
+}
+#sysdir {
+  margin: 7px;
+  float: right;
+  width: 130px;
+  list-style: none;
+  padding: 0;
+}
+
+#sysdir li a {
+  border: solid 1px transparent;
+  display: block;
+  margin: 5px 0;
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  min-width: 120px;
+}
+#sysdir li a:hover {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-box-shadow: inset 0 0 1px #fff;
+  -webkit-box-shadow: inset 0 0 1px #fff;
+  border: solid 1px #000;
+  background-color: #658da0;
+  background: -moz-linear-gradient(
+    center left,
+    rgba(81, 115, 132, 0.55),
+    rgba(121, 163, 184, 0.55) 50%,
+    rgba(81, 115, 132, 0.55)
+  );
+  background: -webkit-gradient(
+    linear,
+    0% 100%,
+    100% 100%,
+    from(#517384),
+    color-stop(50%, #79a3b8),
+    to(#517384)
+  );
+  box-shadow: 0 0 1px #fff;
+}
+#sysdir li a span {
+  padding: 5px;
+  display: block;
+}
+#sysdir li a:hover span {
+  background: -moz-linear-gradient(
+    center top,
+    transparent,
+    transparent 49%,
+    rgba(2, 37, 58, 0.5) 50%,
+    rgba(63, 111, 135, 0.5)
+  );
+  background: -webkit-gradient(
+    linear,
+    center top,
+    center bottom,
+    from(transparent),
+    color-stop(49%, transparent),
+    color-stop(50%, rgba(2, 37, 58, 0.5)),
+    to(rgba(63, 111, 135, 0.5))
+  );
+}
+#sysdir li.user {
+  text-align: center;
+}
+#bottom {
+  z-index: 1000;
+  width: 100%;
+  height: 40px;
+  background: -webkit-linear-gradient(
+    65deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
+  background: -moz-linear-gradient(
+    65deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
+  background: -ms-linear-gradient(
+    65deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
+  background: -o-linear-gradient(
+    65deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
+  background: linear-gradient(
+    65deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.9)
+  );
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.4);
+  -moz-box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.4);
+}
+#bottom div {
+  background: url(img/start-button.png) no-repeat 51% 10%;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+#bottom div:hover {
+  background: url(img/start-button.png) no-repeat 51% 86%;
+}
+#startmenu {
+  position: absolute;
+  bottom: 40px; /* sits above taskbar */
+  left: 10px;   /* aligns with start button */
+  width: 380px;
+  height: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #3a6ea5;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  display: none; /* hidden until start button clicked */
+  z-index: 9999;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
