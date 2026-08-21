@@ -15,6 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "accounts"
 HTTP_PORT = int(os.environ.get("WIN7_HTTP_PORT", "8000"))
 WS_PORT = int(os.environ.get("WIN7_WS_PORT", "8765"))
+ENABLE_WS = os.environ.get("WIN7_ENABLE_WS", "0").strip().lower() in {"1", "true", "yes", "on"}
 GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 STORE_LOCK = threading.RLock()
 
@@ -485,13 +486,13 @@ class DesktopRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         if parsed.path == "/api/ping":
-            return self.write_json({"ok": True, "wsPort": WS_PORT})
+            return self.write_json({"ok": True, "wsPort": WS_PORT if ENABLE_WS else None})
         if parsed.path == "/api/state":
             email = normalize_email(parse_qs(parsed.query).get("email", [""])[0])
             if not email:
                 return self.write_json({"error": "email is required"}, status=400)
             account = read_account(email)
-            return self.write_json({"ok": True, "profile": account["profile"], "state": account["state"], "wsPort": WS_PORT})
+            return self.write_json({"ok": True, "profile": account["profile"], "state": account["state"], "wsPort": WS_PORT if ENABLE_WS else None})
         return super().do_GET()
 
     def do_POST(self):
@@ -514,7 +515,7 @@ class DesktopRequestHandler(http.server.SimpleHTTPRequestHandler):
                 account["profile"]["email"] = email
                 account.setdefault("state", {}).setdefault("settings", {})["username"] = display_name
                 _write_account_unlocked(account)
-            return self.write_json({"ok": True, "profile": account["profile"], "state": account["state"], "wsPort": WS_PORT})
+            return self.write_json({"ok": True, "profile": account["profile"], "state": account["state"], "wsPort": WS_PORT if ENABLE_WS else None})
 
         if parsed.path == "/api/state":
             email = normalize_email(body.get("email"))
@@ -563,11 +564,14 @@ class DesktopRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 def main():
     http_server = ThreadingHTTPServer(("0.0.0.0", HTTP_PORT), DesktopRequestHandler)
-    ws_server = ThreadingWebSocketServer(("0.0.0.0", WS_PORT), WebSocketHandler)
+    ws_server = None
 
-    threading.Thread(target=ws_server.serve_forever, daemon=True).start()
+    if ENABLE_WS:
+        ws_server = ThreadingWebSocketServer(("0.0.0.0", WS_PORT), WebSocketHandler)
+        threading.Thread(target=ws_server.serve_forever, daemon=True).start()
     print(f"Frames 6 desktop server running at http://127.0.0.1:{HTTP_PORT}")
-    print(f"Messenger WebSocket running at ws://127.0.0.1:{WS_PORT}/ws")
+    if ws_server:
+        print(f"Messenger WebSocket running at ws://127.0.0.1:{WS_PORT}/ws")
 
     try:
         http_server.serve_forever()
@@ -575,7 +579,8 @@ def main():
         pass
     finally:
         http_server.shutdown()
-        ws_server.shutdown()
+        if ws_server:
+            ws_server.shutdown()
 
 
 if __name__ == "__main__":
